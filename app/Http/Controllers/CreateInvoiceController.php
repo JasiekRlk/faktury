@@ -51,7 +51,7 @@ class CreateInvoiceController extends Controller
         $create_invoice->numer_konta=$request->numer_konta;
         $create_invoice->termin_platnosci=$request->termin_platnosci;        
       
-        Faktura::transaction(function() use ($create_invoice, $create_nabywca, $create_sprzedawca) {
+        DB:transaction(function() use ($create_invoice, $create_nabywca, $create_sprzedawca) {
           $create_nabywca->save();
           $create_sprzedawca->save();
         
