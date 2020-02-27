@@ -9,10 +9,10 @@ class Faktura extends Model
     public $timestamps = false;
 
     public function nabywca(){
-        return $this->belongsTo('App\Nabywca');
+        return $this->belongsTo('App\Nabywca', 'nabywca_id');
     }
     public function sprzedawca(){
-        return $this->belongsTo('App\Sprzedawca');
+        return $this->belongsTo('App\Sprzedawca', 'sprzedawca_id');
         
     }
 }

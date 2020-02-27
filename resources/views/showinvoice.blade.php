@@ -19,13 +19,12 @@
 
 <h1>HELLO lARAVEL</h1>
 <br/>
-<button type="button" class="btn btn-success">Stworz Fakture</button>
+<div class="container">
+<button type="button" class="btn btn-success"><a href ='/createinvoice'>Stworz Fakture</a></button>
 <br/>
-<div class='container'>
 @foreach ($fakturas as $faktura)
 <br/>
-</div>
-<table class="table">
+<table class="table" style="width:100%">
   <thead class="thead-dark">
     <tr>
       <th scope="col">Typ Faktury</th>
@@ -48,7 +47,7 @@
     <tr>
   </tbody>
 </table>
-<button type="button" class="btn btn-warning">Edytuj Fakture</button>
+<button type="button" class="btn btn-warning"><a href = 'edit/{{ $faktura->id}}'>Edytuj Fakture</a></button>
 <button type="button" class="btn btn-light">PDF Faktury</button>
 <button type="submit" class="btn btn-danger"><a href = 'delete/{{ $faktura->id}}'>Usun Fakture</a></button>
 <br/>

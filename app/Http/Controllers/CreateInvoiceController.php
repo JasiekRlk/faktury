@@ -70,14 +70,17 @@ public function show($id_faktury='id',$typ_faktury='typ_faktury',$data_wystawien
 }
 public function destroy($id_faktury='id')
 {
-   
+  $sprzedawca = Faktura::with('sprzedawca')->get('id')->delete();
+  $nabywca = Faktura::with('nabywca')->get('id')->delete();
         $faktura = Faktura::findOrFail($id_faktury)->delete();
         return redirect('/showinvoice');
  
 }
-public function edit($id_faktury='id'){
+public function edit(){
   
-  $edit_invoice = Faktura::findOrFail($id_faktury);
-  return view('editinvoice')->with('fakturas',$fakura);
+  $fakturas = Faktura::all();
+  $sprzedawca = Faktura::with('sprzedawca')->get();
+  $nabywca = Faktura::with('nabywca')->get();
+  return view('editinvoice')->with('fakturas',$fakturas, 'sprzedawca', 'nabywca', $nabywca);
 }
 }
