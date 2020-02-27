@@ -21,6 +21,10 @@
 {{ csrf_field() }}
 <label for="id"></label>
 <input type="hidden" name="id" id="id" class="form-control"/>
+<label for="id"></label>
+<input type="hidden" name="sprzedawca_id" id="id" class="form-control"/>
+<label for="id"></label>
+<input type="hidden" name="nabywca_id" id="id" class="form-control"/>
 
 <label for="typ_faktury">Typ fkatury</label>
 <input type="text" name="typ_faktury" id="typ_faktury" class="form-control"/>

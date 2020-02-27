@@ -15,8 +15,8 @@ class CreateFakturasTable extends Migration
     {
         Schema::create('fakturas', function(Blueprint $table){      
             $table->increments('id');
-            $table->unsignedinteger('id_sprzedawcy');
-            $table->unsignedinteger('id_nabywcy');
+            $table->unsignedinteger('sprzedawca_id');
+            $table->unsignedinteger('nabywca_id');
             $table->string('typ_faktury');
             $table->date('data_wystawienia');
             $table->string('mejsce_wystawienia');
@@ -37,12 +37,14 @@ class CreateFakturasTable extends Migration
                
         });
         Schema::table('fakturas',function($table){
-            $table->foreign('id_sprzedawcy')
+            $table->foreign('sprzedawca_id')
             ->references('id')->on('sprzedawcas')
-            ->onDelete('cascade');
-        $table->foreign('id_nabywcy')
+            ->onDelete('cascade')
+            ->onUpdate('cascade');
+        $table->foreign('nabywca_id')
             ->references('id')->on('nabywcas')
-            ->onDelete('cascade');
+            ->onDelete('cascade')
+            ->onUpdate('cascade');
         });
 
     }

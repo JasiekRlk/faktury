@@ -32,7 +32,8 @@ class CreateInvoiceController extends Controller
         $create_nabywca ->kod_pocztowy_nabywca=$request->kod_pocztowy_nabywca;
 
         $create_invoice = new Faktura();
-       
+        $invoice_id1 = new Sprzedawca();
+        $invoice_id2 = new Nabywca();
         $create_invoice->typ_faktury=$request->typ_faktury;
         $create_invoice->data_wystawienia=$request->data_wystawienia;
         $create_invoice->mejsce_wystawienia=$request->mejsce_wystawienia;
@@ -49,9 +50,10 @@ class CreateInvoiceController extends Controller
         $create_invoice->sposob_platnosci=$request->sposob_platnosci;
         $create_invoice->numer_konta=$request->numer_konta;
         $create_invoice->termin_platnosci=$request->termin_platnosci; 
-        $invoice_id->id=$request->id;
-        $invoice_id->faktura1()->save( $create_invoice);
-        $invoice_id->faktura2()->save( $create_invoice);
+        $invoice_id1->id;
+        $invoice_id2->id;
+        $invoice_id2->faktura2()->save($create_invoice);
+        $invoice_id1->faktura1()->save($create_invoice);
 
      
         if ($create_invoice->save() and $create_nabywca->save() and $create_sprzedawca->save()){
@@ -76,7 +78,7 @@ public function destroy($id_faktury='id')
 }
 public function edit($id_faktury='id'){
   
-  $edit_invoice = FAKTURA::findOrFeil($id_faktury);
+  $edit_invoice = Faktura::findOrFail($id_faktury);
   return view('editinvoice')->with('fakturas',$fakura);
 }
 }
