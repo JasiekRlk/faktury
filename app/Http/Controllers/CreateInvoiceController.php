@@ -32,8 +32,8 @@ class CreateInvoiceController extends Controller
         $create_nabywca ->kod_pocztowy_nabywca=$request->kod_pocztowy_nabywca;
 
         $create_invoice = new Faktura();
-        $invoice_id1 = new Sprzedawca();
-        $invoice_id2 = new Nabywca();
+        $invoice_id_sprzedawca = new Sprzedawca();
+        $invoice_id_nabywca = new Nabywca();
         $create_invoice->typ_faktury=$request->typ_faktury;
         $create_invoice->data_wystawienia=$request->data_wystawienia;
         $create_invoice->mejsce_wystawienia=$request->mejsce_wystawienia;
@@ -50,10 +50,10 @@ class CreateInvoiceController extends Controller
         $create_invoice->sposob_platnosci=$request->sposob_platnosci;
         $create_invoice->numer_konta=$request->numer_konta;
         $create_invoice->termin_platnosci=$request->termin_platnosci; 
-        $invoice_id1->id;
-        $invoice_id2->id;
-        $invoice_id2->faktura2()->save($create_invoice);
-        $invoice_id1->faktura1()->save($create_invoice);
+        $invoice_id_nabywca->id;
+        $invoice_id_sprzedawca->id;
+        $invoice_id_nabywca->faktura_nabywca()->save($create_invoice);
+        $invoice_id_spzedawca->faktura_spzedawca()->save($create_invoice);
 
      
         if ($create_invoice->save() and $create_nabywca->save() and $create_sprzedawca->save()){
