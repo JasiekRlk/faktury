@@ -50,21 +50,16 @@ class CreateInvoiceController extends Controller
         $create_invoice->sposob_platnosci=$request->sposob_platnosci;
         $create_invoice->numer_konta=$request->numer_konta;
         $create_invoice->termin_platnosci=$request->termin_platnosci;        
-      
-        DB:transaction(function() use ($create_invoice, $create_nabywca, $create_sprzedawca) {
-          $create_nabywca->save();
+
+        DB::transaction(function () use ($create_sprzedawca, $create_nabywca, $create_invoice) {
           $create_sprzedawca->save();
-        
-          $create_invoice->nabywca_id = $create_nabywca->id;
-          $create_invoice->sprzedawca_id = $create_sprzedawca->id;
+          $create_nabywca->save();
+          $create_invoice->nabywca()->associate($create_nabywca);
+          $create_invoice->sprzedawca()->associate($create_sprzedawca);
           $create_invoice->save();
-        });
-     
-        if ($create_invoice->save() and $create_nabywca->save() and $create_sprzedawca->save()){
-            return redirect() -> route('createinvoice', $create_sprzedawca->id,$create_nabywca->id, $create_invoice->nabywca_id, $create_invoice->sprzedawca_id);
-        }else {
+      }, 5);
             return redirect('showinvoice');
-        }            
+                  
     } 
 
 public function show($id_faktury='id',$typ_faktury='typ_faktury',$data_wystawienia='data_wystawienia',$wartosc_brutto='wartosc_brutto',$status='status',$sposob_platnosci='sposob_platnosci', $data_sprzedazy='data_sprzedazy' )
