@@ -13,5 +13,6 @@ class Faktura extends Model
     }
     public function sprzedawca(){
         return $this->belongsTo('App\Sprzedawca');
+        
     }
 }

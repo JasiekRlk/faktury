@@ -49,17 +49,21 @@ class CreateInvoiceController extends Controller
         $create_invoice->status=$request->status;    
         $create_invoice->sposob_platnosci=$request->sposob_platnosci;
         $create_invoice->numer_konta=$request->numer_konta;
-        $create_invoice->termin_platnosci=$request->termin_platnosci; 
-        $invoice_id_nabywca->id;
-        $invoice_id_sprzedawca->id;
-        $invoice_id_nabywca->faktura_nabywca()->save($create_invoice);
-        $invoice_id_spzedawca->faktura_spzedawca()->save($create_invoice);
-
+        $create_invoice->termin_platnosci=$request->termin_platnosci;        
+      
+        Faktura::transaction(function() use ($create_invoice, $create_nabywca, $create_sprzedawca) {
+          $create_nabywca->save();
+          $create_sprzedawca->save();
+        
+          $create_invoice->nabywca_id = $create_nabywca->id;
+          $create_invoice->sprzedawca_id = $create_sprzedawca->id;
+          $create_invoice->save();
+        });
      
         if ($create_invoice->save() and $create_nabywca->save() and $create_sprzedawca->save()){
-            return redirect() -> route('showinvoice', $create_sprzedawca->id,$create_nabywca->id, $create_invoice->id);
+            return redirect() -> route('createinvoice', $create_sprzedawca->id,$create_nabywca->id, $create_invoice->nabywca_id, $create_invoice->sprzedawca_id);
         }else {
-            return redirecte('showinvoice');
+            return redirect('showinvoice');
         }            
     } 
 
