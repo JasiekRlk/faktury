@@ -15,4 +15,8 @@ class Faktura extends Model
         return $this->belongsTo('App\Sprzedawca', 'sprzedawca_id');
         
     }
+
+    public function user(){
+        return $this->belongsTo('App\User');
+    }
 }

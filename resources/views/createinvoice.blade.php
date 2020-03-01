@@ -15,7 +15,13 @@
 </head>
 
 <body>
-@include('_includes/nav')
+
+@extends('layouts.app')
+@section('content')
+
+
+<div class="container">
+<div class="jumbotron jumbotron-fluid">
 <h1>HELLO lARAVEL</h1>
 <form action ="{{route('createinvoice.store')}}" method="POST">
 {{ csrf_field() }}
@@ -106,6 +112,8 @@
 
 <button type="submit" class="btn btn-primary">Zatwierdz Fakture</button>
 </form>
+</div>
+</div>
 </body>
-
+@endsection
 </html>

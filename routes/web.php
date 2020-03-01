@@ -21,4 +21,8 @@ Route::get('/showinvoice', 'CreateInvoiceController@show')->name('showinvoice.sh
 Route::get('delete/{id_faktury}','CreateInvoiceController@destroy')->name('showinvoice.destroy');
 Route::get('delete/{id_faktury}','CreateInvoiceController@destroy')->name('showinvoice.destroy');
 Route::get('edit/{id_faktury}','CreateInvoiceController@edit')->name('editinvoice.edit');
-Route::post('edit/{id_faktury}','CreateInvoiceController@store')->name('editinvoice.store');
+Route::post('update/{id_faktury}','CreateInvoiceController@update')->name('updateinvoice.update');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/profile/{user}','PageController@profile')->name('profile');

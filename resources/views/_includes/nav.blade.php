@@ -30,15 +30,6 @@
         <a class="nav-link" href="{{ url('/home') }}">Home<span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href ="{{ url('/home') }}">Stworz Fakture</a>
-      </li>
-            <li class="nav-item">
-        <a class="nav-link" href ="{{action('EditInvoice@edit',$row['id_faktury'])}}">Edytuj Fakture</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href ="{{ url('/home') }}">Usun Fakture</a>
-      </li>
-      <li class="nav-item">
         <a class="nav-link" href="{{ url('/home') }}">Wyloguj Sie</a>
       </li>
       @else                                       

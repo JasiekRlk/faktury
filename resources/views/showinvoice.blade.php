@@ -12,20 +12,19 @@
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 </head>
-
 <body>
-@include('_includes/nav')
-
-
-<h1>HELLO lARAVEL</h1>
+@extends('layouts.app')
+@section('content')
+<br>
 <br/>
-<div class="container">
+<div class="container" syle="width:100%;">
+<div  class="jumbotron jumbotron-fluid" syle="width:100%;">
 <button type="button" class="btn btn-success"><a href ='/createinvoice'>Stworz Fakture</a></button>
 <br/>
 @foreach ($fakturas as $faktura)
 <br/>
-<table class="table" style="width:100%">
-  <thead class="thead-dark">
+<table class="table table-striped table-dark" syle="width:100%;" >
+  <thead>
     <tr>
       <th scope="col">Typ Faktury</th>
       <th scope="col">Data Wystawienia</th>
@@ -35,7 +34,7 @@
       <th scope="col">Sposob Platnoci </th>
     </tr>
   </thead>
-  <tbody>
+  <tbody class="">
     <tr>
       <th>{{$faktura->typ_faktury}}</th>
       <td>{{$faktura->data_wystawienia}}</td>
@@ -54,6 +53,8 @@
 @endforeach
 
 </div>
+</div>
+@endsection
 </body>
 
 </html>
