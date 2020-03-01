@@ -19,4 +19,5 @@ class Faktura extends Model
     public function user(){
         return $this->belongsTo('App\User');
     }
+    protected $fillable = ['id', 'sprzedawca_id', 'nabywca_id'];
 }

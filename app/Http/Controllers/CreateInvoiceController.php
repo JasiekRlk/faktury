@@ -94,48 +94,108 @@ public function edit($id = 'user_id'){
   return view('editinvoice')->with('fakturas',$fakturas, 'sprzedawca',$sprzedawca, 'nabywca', $nabywca);
   }
 }
-public function update(Request $request, $id='id'){
-
-  $update_invoice = Faktura::find($id);
-  $update_sprzedawca = Faktura::with('sprzedawca')->get();
-  $update_nabywca = Faktura::with('nabywca')->get();
-
-$update_sprzedawca ->sprzedawca=$request->input('sprzedawca');
-$update_sprzedawca ->nip_sprzedawca=$request->input('nip_sprzedawca');
-$update_sprzedawca ->ulica_sprzedawca=$request->input('ulica_sprzedawca');
-$update_sprzedawca ->miasto_spzedawca=$request->input('miasto_sprzedawca');
-$update_sprzedawca ->kod_pocztowy_sprzedawca=$request->input('kod_pocztowy_sprzedawca');    
+public function update(Request $request, $id='id', $srzedawca_id='sprzedawca_id',$nabywca_id='nabywca_id'){
 
 
-$update_nabywca ->nabywca=$request->input('nabywca');
-$update_nabywca ->nip_nabywca=$request->input('nip_nabywca');
-$update_nabywca ->ulica_nabywca=$request->input('ulica_nabywca');
-$update_nabywca ->miasto_nabywca=$request->input ('miasto_nabywca');
-$update_nabywca ->kod_pocztowy_nabywca=$request->input('kod_pocztowy_nabywca');
 
-$update_invoice->typ_faktury=$request->input('typ_faktury');
-$update_invoice->data_wystawienia=$request->input('data_wystawienia');
-$update_invoice->mejsce_wystawienia=$request-> input('mejsce_wystawienia');
-$update_invoice->data_sprzedazy=$request->input('data_sprzedazy');
-$update_invoice->towar_usluga=$request-> input('towar_usluga');
-$update_invoice->jm=$request->input('jm');
-$update_invoice->ilosc=$request->input('ilosc');
-$update_invoice->cena_netto=$request->input('cena_netto');
-$update_invoice->watosc_netto=$request-> input('watosc_netto');
-$update_invoice->stawka_vat=$request-> input('stawka_vat');
-$update_invoice->kwota_vat=$request->input ('kwota_vat');
-$update_invoice->wartosc_brutto=$request-> input('wartosc_brutto');
-$update_invoice->status=$request->input('status');    
-$update_invoice->sposob_platnosci=$request->input('sposob_platnosci');
-$update_invoice->numer_konta=$request->input('numer_konta');
-$update_invoice->termin_platnosci=$request->input('termin_platnosci');        
-$update_invoice->save();
+  $update_sprzedawca= Sprzedawca::where('id','=', $request->id)
+  ->update(['sprzedawca' => $request->sprzedawca]);
+
+  $update_sprzedawca= Sprzedawca::where('id','=', $request->id)
+
+  ->update(['sprzedawca' => $request->sprzedawca]);
+
+  $update_sprzedawca= Sprzedawca::where('id','=', $request->id)
+
+  ->update(['nip_sprzedawca' => $request->nip_sprzedawca]);
+
+  $update_sprzedawca= Sprzedawca::where('id','=', $request->id)
+
+  ->update(['ulica_sprzedawca' => $request->ulica_sprzedawca]);
+
+  $update_sprzedawca= Sprzedawca::where('id','=', $request->id)
+
+  ->update(['miasto_spzedawca' => $request->miasto_spzedawca]);
+
+  $update_sprzedawca= Sprzedawca::where('id','=', $request->id)
+
+  ->update(['kod_pocztowy_sprzedawca' => $request->kod_pocztowy_sprzedawca]);
+  
+  $update_nabywca= Nabywca::where('id','=', $request->id)
+
+  ->update(['nabywca' => $request->nabywca]);
+  
+  $update_nabywca=Nabywca::where('id','=', $request->id)
+ 
+  ->update(['nip_nabywca' => $request->nip_nabywca]);
+  
+  $update_nabywca= Nabywca::where('id','=', $request->id)
+
+  ->update(['ulica_nabywca' => $request->ulica_nabywca]);
+  
+  $update_nabywca= Nabywca::where('id','=', $request->id)
+  
+  ->update(['miasto_nabywca' => $request->miasto_nabywca]);
+  
+  $update_nabywca= Nabywca::where('id','=', $request->id)
+ 
+  ->update(['kod_pocztowy_nabywca' => $request->kod_pocztowy_nabywca]);
+
+$update_invoice = Faktura::where('id','=', $request->id)
+  
+  ->update(['typ_faktury'=>$request->typ_faktury]);
+  
+  $update_invoice = Faktura::where('id','=', $request->id)
+  
+  ->update(['data_wystawienia'=>$request->data_wystawienia]);
+  $update_invoice = Faktura::where('id','=', $request->id)
+  
+  ->update(['mejsce_wystawienia'=>$request->mejsce_wystawienia]);
+  $update_invoice = Faktura::where('id','=', $request->id)
+  
+  ->update(['data_sprzedazy'=>$request->data_sprzedazy]);
+  $update_invoice = Faktura::where('id','=', $request->id)
+  
+  ->update(['towar_usluga'=>$request->towar_usluga]);
+  $update_invoice = Faktura::where('id','=', $request->id)
+  
+  ->update(['jm'=>$request->jm]);
+  $update_invoice = Faktura::where('id','=', $request->id)
+  
+  ->update(['ilosc'=>$request->ilosc]);
+  $update_invoice = Faktura::where('id','=', $request->id)
+  
+  ->update(['cena_netto'=>$request->cena_netto]);
+  $update_invoice = Faktura::where('id','=', $request->id)
+  
+  ->update(['watosc_netto'=>$request->watosc_netto]);
+
+  $update_invoice = Faktura::where('id','=', $request->id)
+  ->update(['stawka_vat'=>$request->stawka_vat]);
+
+  $update_invoice = Faktura::where('id','=', $request->id)
+  ->update(['kwota_vat'=>$request->kwota_vat]);
+
+  $update_invoice = Faktura::where('id','=', $request->id)
+  ->update(['wartosc_brutto'=>$request->watosc_bruttp]);
+  $update_invoice = Faktura::where('id','=', $request->id)
+  ->update(['status'=>$request->status]);
+  $update_invoice = Faktura::where('id','=', $request->id)
+  ->update(['sposob_platnosci'=>$request->sposob_platnosci]);
+  $update_invoice = Faktura::where('id','=', $request->id)
+  ->update(['numer_konta'=>$request->numer_konta]);
+  $update_invoice = Faktura::where('id','=', $request->id)
+  ->update(['termin_platnosci'=>$request->termin_platnosci]);
+       
+
+$update_nabywca->save();
 $update_sprzedawca->save();
 $update_invoice->nabywca()->associate($update_nabywca);
 $update_invoice->sprzedawca()->associate($update_sprzedawca);
-$update_nabywca->save();
+$update_invoice->save();
 
     return redirect('showinvoice');
+          
           
 } 
   }
