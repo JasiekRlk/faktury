@@ -83,7 +83,7 @@ public function show($id_faktury='id',$typ_faktury='typ_faktury',$data_wystawien
 public function destroy($id_faktury='id',$id='user_id')
 {
     $faktura = Faktura::findOrFail($id_faktury)->delete();
-        return redirect('/showinvoice');  
+        return redirect('showinvoice');  
 }
 public function edit($id = 'user_id'){
   $faktura = Faktura::findOrFail($id);
@@ -96,9 +96,10 @@ public function edit($id = 'user_id'){
   return view('editinvoice')->with('fakturas',$fakturas, 'sprzedawca',$sprzedawca, 'nabywca', $nabywca);
   }
 }
-public function update(Request $request){
-  $update_invoice = Faktura::findOrFail('id');
- 
+public function update(Request $request, $id='id'){
+
+  $id_faktura = $request->$id;
+  $user =Faktura::find($id_faktura);
 
   $update_sprzedawca ->sprzedawca=$request->sprzedawca;
   $update_sprzedawca ->nip_sprzedawca=$request->nip_sprzedawca;
@@ -130,9 +131,15 @@ public function update(Request $request){
   $update_invoice->sposob_platnosci=$request->sposob_platnosci;
   $update_invoice->numer_konta=$request->numer_konta;
   $update_invoice->termin_platnosci=$request->termin_platnosci;        
-  $update_invoice->user()->associate(Auth::id());  
+  DB::transaction(function () use ($update_sprzedawca, $update_nabywca, $update_invoice) {
+    $update_sprzedawca->save();
+    $update_nabywca->save();
+    $update_invoice->nabywca()->associate($update_nabywca);
+    $update_invoice->sprzedawca()->associate($update_sprzedawca);
+    $update_invoice->save();
+}, 5);
 
-      return redirect('/showinvoice');
+      return redirect('showinvoice');
             
 } 
 

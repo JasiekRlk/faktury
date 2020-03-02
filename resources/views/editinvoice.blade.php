@@ -89,7 +89,7 @@
 <h1>Edytujesz Fature {{$faktura->typ_faktury}}</h1>
 <br>
 <div class="jumbotron jumbotron-fluid">
-<form action ="{{route('updateinvoice.update', $faktura->id)}}" method="POST" id="input">
+<form action ="{{route('updateinvoice.update', [$faktura->id])}}" method="POST" id="input">
 {{ csrf_field() }}
 <input type="hidden" name="typ_faktury" id="typ_faktury" value="{{$faktura->id}}" class="form-control"/>
 <label for="typ_faktury">Typ fkatury</label>
