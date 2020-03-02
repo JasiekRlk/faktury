@@ -1,5 +1,90 @@
 @extends('layouts.app')
+<style>
+ #table{
+    font-size: 16px;
+    font-family: sans-serif;
+    width:100%;
+    height:40px;
+  }
+  @media screen and (max-width: 760px) {
+    #table{
+      width:100%;
+      font-size:14px;
+    }
+ 
+    #btn_danger{
+      margin-top:10px;
+    }
+  }
+  @media screen and (max-width: 500px) {
+    #table{
+      width:100%;
+      font-size:13px;
+    }
+    #btn_danger{
+      margin-top:10px;
+    }
+  }
+  h1{
+    font-family: sans-serif;
+    margin-left:25px;
+}
+  #profil{
+    font-size: 18px;
+    font-family: sans-serif;
+    margin-left:20px;
+    height:60px;
+    padding: 20px;
+    color:black;
+    text-align:center;
+    width: 200px;
+  }
+  #link{
+    color:black;
+    text-decoration:none;
+    font-size: 18px;
+    font-family: sans-serif;
 
+  }
+  #btn_light{
+    margin-left:20px;
+    height:60px;
+    padding: 20px;
+    text-align:center;
+    width: 200px;
+    background-color: white;
+    border:1px solid white;
+    cursor: pointer;
+  }
+  #btn_light:hover{
+    background-color: #f4511e;
+    border:1px solid #f4511e;
+  }
+  #btn_success{
+    height:60px;
+    text-align:center;
+    width: 200px;
+    background-color: white;
+    border:1px solid white;
+    margin-left:20px;
+    cursor: pointer;
+    padding: 20px;
+  }
+  #btn_success:hover{
+  background-color:#28A745;
+  border:1px solid #28A745;
+}
+  #btn_warning {
+    height:60px;
+    margin-left:20px;
+    width: 200px;
+    text-align:center;
+    background-color: white;
+    border:1px solid white;
+    cursor: pointer;
+  
+}
+</style>
 @section('content')
 <!DOCTYPE html>
 <html>
@@ -18,11 +103,10 @@
 <body>
 <div class = "container">
 <div  class="jumbotron jumbotron-fluid">
-  <h1 class="display-4">Witaj</h1>
+  <h1>Witaj</h1>
   <hr class="my-4">
-  <a class="btn btn-info btn-lg" href="showinvoice" role="button">Pokaz Faktury</a>
-  <a class="btn btn-success btn-lg" href="createinvoice" role="button">Stworz Fakture</a>
-  <a class="btn btn-primary btn-lg" href="profile" role="button">Profil</a>
+  <button class="btn btn-info btn-lg" href="showinvoice" role="button"id="btn_success"><a id="link"  href="showinvoice" >Pokaz Faktury</a></button>
+  <a class="btn btn-primary btn-lg" href="profile" id="profil" role="button">Profil</a>
 </div>
 </div>
 </body>

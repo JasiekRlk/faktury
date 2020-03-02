@@ -1,5 +1,89 @@
 @extends('layouts.app')
+<style>
+  #table{
+    font-size: 16px;
+    font-family: sans-serif;
+    width:100%;
+    height:40px;
+  }
+  @media screen and (max-width: 900px) {
+    #table{
+      width:100%;
+      font-size:14px;
+    }
+ 
+    #btn_danger{
+      margin-top:10px;
+    }
+  }
+  @media screen and (max-width: 750px) {
+    #table{
+      width:100%;
+      font-size:12px;
+    }
+  }
+  #link{
+    color:black;
+    text-decoration:none;
+    font-size: 18px;
+    font-family: sans-serif;
 
+  }
+  #btn_light{
+    margin-left:20px;
+    height:60px;
+    padding: 20px;
+    text-align:center;
+    width: 200px;
+    background-color: white;
+    border:1px solid white;
+    cursor: pointer;
+  }
+  #btn_light:hover{
+    background-color: #f4511e;
+    border:1px solid #f4511e;
+  }
+  #btn_success{
+    height:60px;
+    text-align:center;
+    width: 200px;
+    background-color: white;
+    border:1px solid white;
+    margin-left:20px;
+    cursor: pointer;
+    padding: 20px;
+  }
+  #btn_success:hover{
+  background-color:#28A745;
+  border:1px solid #28A745;
+}
+  #btn_warning {
+    height:60px;
+    margin-left:20px;
+    width: 200px;
+    text-align:center;
+    background-color: white;
+    border:1px solid white;
+    cursor: pointer;
+  
+}
+#btn_warning:hover{
+  background-color:#FFC107;
+  border:1px solid #FFC107;
+}
+#btn_danger{
+  margin-left:20px;
+  width: 200px;
+  height:60px;
+  text-align:center;
+  cursor: pointer;
+}
+.string{
+  font-size: 21px;
+    font-family: sans-serif;
+    margin-left:25px;
+}
+</style>
 @section('content')
 <!DOCTYPE html>
 <html>
@@ -18,15 +102,17 @@
 <body>
 <div class = "container">
 <div  class="jumbotron jumbotron-fluid">
-<h1>{{$user->name}}</h1>  
-<h2>{{$user->email}}<h2>
+<h1 class="string">{{$user->name}}</h1>
+<hr class="my-4">  
+<h2 class="string">{{$user->email}}<h2>
 </div>
 <br><br/>
 <div  class="jumbotron jumbotron-fluid">
 @foreach ($user->faktura as $faktura)
-
-<br/>
-<table class="table table-striped table-dark" syle="width:100%;" >
+<button type="button" class="btn btn-success" id="btn_success"><a id='link' href ='/createinvoice'>Stworz Fakture</a></button>
+<br>
+<table class="table table-striped table-dark" syle="width:100%;" id="table">
+<br>
   <thead>
     <tr>
       <th scope="col">Typ Faktury</th>
@@ -48,9 +134,9 @@
     <tr>
   </tbody>
 </table>
-<button type="button" class="btn btn-warning"><a href = 'edit/{{ $faktura->id}}'>Edytuj Fakture</a></button>
-<button type="button" class="btn btn-light">PDF Faktury</button>
-<button type="submit" class="btn btn-danger"><a href = 'delete/{{ $faktura->id}}'>Usun Fakture</a></button>
+<button type="button" class="btn btn-warning" id="btn_warning"><a id="link" href = 'edit/{{ $faktura->id}}'>Edytuj Fakture</a></button>
+<button type="button" class="btn btn-light" id="btn_light">PDF Faktury</button>
+<button type="submit" class="btn btn-danger"  id="btn_danger"><a  id="link" href = 'delete/{{ $faktura->id}}'>Usun Fakture</a></button>
 <br/>
 @endforeach
 </div>

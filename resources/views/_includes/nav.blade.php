@@ -32,6 +32,9 @@
       <li class="nav-item">
         <a class="nav-link" href="{{ url('/home') }}">Wyloguj Sie</a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{{ url('/profile/{user}') }}">Profil</a>
+      </li>
       @else                                       
       <li class="nav-item">
         <a class="nav-link disabled" href="{{ route('login') }}">Zarejestruj Sie</a>

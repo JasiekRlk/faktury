@@ -1,4 +1,69 @@
+<style>
+  h1{
+    font-size: 24px;
+    font-family: sans-serif;
+  }
+  #input{
+    margin-left:50px;
+  
+    font-size: 18px;
+    font-family: sans-serif;
+  }
+  @media screen and (max-width: 800px) {
+    #input{
+      margin-left:30px;
+      font-size:14px;
 
+    }
+  }
+    @media screen and (max-width: 400px) {
+    #input{
+      margin-left:30px;
+      font-size:14px;
+
+    }
+  }
+  #btn_primary {
+  border-radius: 4px;
+  background-color: #007BFF;
+  border: none;
+  color:black;
+  font-size: 18px;
+  font-family: sans-serif;
+  padding: 20px;
+  width: 300px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+}
+
+#btn_primary span {
+  cursor: pointer;
+  font-size: 18px;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+#btn_primary span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+#btn_primary:hover span {
+  padding-right: 25px;
+
+}
+
+#btn_primary:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+</style>
 <!DOCTYPE html>
 <html>
 
@@ -18,13 +83,15 @@
 @extends('layouts.app')
 @section('content')
 
-<h1>HELLO lARAVEL</h1>
+
 @foreach ($fakturas as $faktura)
 <div class="container">
+<h1>Edytujesz Fature {{$faktura->typ_faktury}}</h1>
+<br>
 <div class="jumbotron jumbotron-fluid">
-<form action ="{{route('updateinvoice.update', $faktura->id)}}" method="POST">
+<form action ="{{route('updateinvoice.update', $faktura->id)}}" method="POST" id="input">
 {{ csrf_field() }}
-
+<input type="hidden" name="typ_faktury" id="typ_faktury" value="{{$faktura->id}}" class="form-control"/>
 <label for="typ_faktury">Typ fkatury</label>
 <input type="text" name="typ_faktury" id="typ_faktury" value="{{$faktura->typ_faktury}}" class="form-control"/>
 
@@ -103,7 +170,8 @@
 <label for="termin_platnosci">Termin platnosci</label>
 <input type="text" name="termin_platnosci" id="termin_platnosci" value="{{$faktura->termin_platnosci}}" class="form-control"/>
 @endforeach
-<button type="submit" class="btn btn-primary">Zatwierdz  Edycje Faktury</button>
+</br>
+<button type="submit" class="btn btn-primary" id="btn_primary"><span>Zatwierdz  Edycje Faktury</span></button>
 </form>
 </div>
 </div>

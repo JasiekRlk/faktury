@@ -1,4 +1,69 @@
+<style>
+  h1{
+    font-size: 24px;
+    font-family: sans-serif;
+  }
+  #input{
+    margin-left:50px;
+  
+    font-size: 18px;
+    font-family: sans-serif;
+  }
+  @media screen and (max-width: 800px) {
+    #input{
+      margin-left:30px;
+      font-size:14px;
 
+    }
+  }
+    @media screen and (max-width: 400px) {
+    #input{
+      margin-left:30px;
+      font-size:14px;
+
+    }
+  }
+  #btn_primary {
+  border-radius: 4px;
+  background-color: #007BFF;
+  border: none;
+  color:black;
+  font-size: 18px;
+  font-family: sans-serif;
+  padding: 20px;
+  width: 300px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+}
+
+#btn_primary span {
+  cursor: pointer;
+  font-size: 18px;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+#btn_primary span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+#btn_primary:hover span {
+  padding-right: 25px;
+
+}
+
+#btn_primary:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+</style>
 <!DOCTYPE html>
 <html>
 
@@ -22,8 +87,8 @@
 
 <div class="container">
 <div class="jumbotron jumbotron-fluid">
-<h1>HELLO lARAVEL</h1>
-<form action ="{{route('createinvoice.store')}}" method="POST">
+<form action ="{{route('createinvoice.store')}}" method="POST" id="input">
+<h1>Stworz Fakture</h1>
 {{ csrf_field() }}
 <label for="id"></label>
 <input type="hidden" name="id" id="id" class="form-control"/>
@@ -109,8 +174,8 @@
 
 <label for="termin_platnosci">Termin platnosci</label>
 <input type="text" name="termin_platnosci" id="termin_platnosci" class="form-control"/>
-
-<button type="submit" class="btn btn-primary">Zatwierdz Fakture</button>
+<br>
+<button type="submit" class="btn btn-primary" id="btn_primary"><span>Zatwierdz Fakture</span></button>
 </form>
 </div>
 </div>
