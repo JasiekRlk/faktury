@@ -85,59 +85,18 @@ public function destroy($id_faktury='id',$id='user_id')
     $faktura = Faktura::findOrFail($id_faktury)->delete();
         return redirect('showinvoice');  
 }
-public function edit($id = 'user_id'){
-  $faktura = Faktura::findOrFail($id);
-  if($faktura->user->id != Auth::id()){
-    return abort(403);
-  }else{
-  $fakturas = Faktura::all();
+public function edit($id_faktura){
+
+  $fakturas = Faktura::findOrFail($id_faktura);
   $sprzedawca = Faktura::with('sprzedawca')->get();
   $nabywca = Faktura::with('nabywca')->get();
   return view('editinvoice')->with('fakturas',$fakturas, 'sprzedawca',$sprzedawca, 'nabywca', $nabywca);
-  }
 }
-public function update(Request $request, $id='id'){
+public function update(Request $request, $id_faktura){
 
-  $id_faktura = $request->$id;
-  $user =Faktura::find($id_faktura);
-
-  $update_sprzedawca ->sprzedawca=$request->sprzedawca;
-  $update_sprzedawca ->nip_sprzedawca=$request->nip_sprzedawca;
-  $update_sprzedawca ->ulica_sprzedawca=$request->ulica_sprzedawca;
-  $update_sprzedawca ->miasto_spzedawca=$request->miasto_spzedawca;
-  $update_sprzedawca ->kod_pocztowy_sprzedawca=$request->kod_pocztowy_sprzedawca;    
-  
-
-  $update_nabywca ->nabywca=$request->nabywca;
-  $update_nabywca ->nip_nabywca=$request->nip_nabywca;
-  $update_nabywca ->ulica_nabywca=$request->ulica_nabywca;
-  $update_nabywca ->miasto_nabywca=$request->miasto_nabywca;
-  $update_nabywca ->kod_pocztowy_nabywca=$request->kod_pocztowy_nabywca;
-
-
-  $update_invoice->typ_faktury=$request->typ_faktury;
-  $update_invoice->data_wystawienia=$request->data_wystawienia;
-  $update_invoice->mejsce_wystawienia=$request->mejsce_wystawienia;
-  $update_invoice->data_sprzedazy=$request->data_sprzedazy;
-  $update_invoice->towar_usluga=$request->towar_usluga;
-  $update_invoice->jm=$request->jm;
-  $update_invoice->ilosc=$request->ilosc;
-  $update_invoice->cena_netto=$request->cena_netto;
-  $update_invoice->watosc_netto=$request->watosc_netto;
-  $update_invoice->stawka_vat=$request->stawka_vat;
-  $update_invoice->kwota_vat=$request->kwota_vat;
-  $update_invoice->wartosc_brutto=$request->wartosc_brutto;
-  $update_invoice->status=$request->status;    
-  $update_invoice->sposob_platnosci=$request->sposob_platnosci;
-  $update_invoice->numer_konta=$request->numer_konta;
-  $update_invoice->termin_platnosci=$request->termin_platnosci;        
-  DB::transaction(function () use ($update_sprzedawca, $update_nabywca, $update_invoice) {
-    $update_sprzedawca->save();
-    $update_nabywca->save();
-    $update_invoice->nabywca()->associate($update_nabywca);
-    $update_invoice->sprzedawca()->associate($update_sprzedawca);
-    $update_invoice->save();
-}, 5);
+ 
+  $update_invoice =Faktura::findOrFail($id_faktura);
+  $update_invoice->update($request->all());
 
       return redirect('showinvoice');
             
