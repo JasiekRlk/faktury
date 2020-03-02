@@ -95,8 +95,9 @@ public function edit($id_faktura){
 public function update(Request $request, $id_faktura){
 
  
-  $update_invoice =Faktura::findOrFail($id_faktura);
+  $update_invoice = Faktura::findOrFail($id_faktura);
   $update_invoice->update($request->all());
+  $update_invoice->save();
 
       return redirect('showinvoice');
             
